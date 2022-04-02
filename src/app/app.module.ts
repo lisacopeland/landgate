@@ -1,37 +1,68 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import {EffectsModule} from '@ngrx/effects';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { appReducers } from './+store/app.reducer';
+import { PeopleEffects } from './+store/people.effects';
+import { peopleReducer } from './+store/people.reducer';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { MenuModule } from 'primeng/menu';
+import { MenubarModule } from 'primeng/menubar';
+import { SidebarModule } from 'primeng/sidebar';
+import { TableModule } from 'primeng/table';
+
+import { PeopleNgrxComponent } from './components/people-ngrx/people-ngrx.component';
+import { PersonEditComponent } from './components/person-edit/person-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    PeopleNgrxComponent,
+    PersonEditComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
+    ButtonModule,
+    CardModule,
+    InputNumberModule,
+    InputTextModule,
+    MenuModule,
+    MenubarModule,
+    SidebarModule,
+    TableModule,
+    StoreModule.forRoot(appReducers, {
+      metaReducers: !environment.production ? [] : [],
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([PeopleEffects]),
     // Instrumentation must be imported after importing StoreModule (config is optional)
-    StoreDevtoolsModule.instrument({
+    StoreModule.forRoot({ people: peopleReducer }),
+    !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 100, // Retains last 100 states
       logOnly: environment.production, // Restrict extension to log-only mode
-    }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    }) : []
   ],
   providers: [],
   bootstrap: [AppComponent]

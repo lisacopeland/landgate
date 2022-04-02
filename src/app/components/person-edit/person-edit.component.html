@@ -1,0 +1,30 @@
+<h3>
+    Edit Person
+</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-item">
+        <label for="firstName">First name</label>
+        <input id="firstName" pInputText type="text" formControlName="firstName" placeholder="First name" />
+    </div>
+    <div class="form-item">
+        <label for="lastName">Last name</label>
+        <input id="firstName" pInputText type="text" formControlName="lastName" placeholder="Last name" />
+    </div>
+    <div class="form-item">
+        <label for="age">Age</label>
+        <p-inputNumber id="age" type="number" [showButtons]="true" suffix=" years" [min]="0" [max]="100"
+            formControlName="age">
+        </p-inputNumber>
+    </div>
+
+    <div class="form-item">
+        <label for="jobTitle">Job title</label>
+        <input id="jobTitle" pInputText type="text" formControlName="jobTitle" placeholder="Job title" />
+    </div>
+
+    <div class="button-row">
+        <button pButton type="submit" label="Save" [disabled]="form.invalid"></button>
+        <button pButton type="button" label="Delete" class="p-button-danger" (click)="onDelete()"></button>
+        <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="onCancel()"></button>
+    </div>
+</form>

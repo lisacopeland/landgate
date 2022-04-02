@@ -1,0 +1,22 @@
+.footer-class {
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    justify-content: space-around;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+:host ::ng-deep .no-border.p-menu {
+    border: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .footer-class {
+      display: flex;
+    flex-direction: column;
+  }
+}

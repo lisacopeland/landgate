@@ -13,6 +13,7 @@
   "dependencies": {
     "@angular-devkit/schematics": "^12.2.14",
     "@angular/animations": "~12.2.15",
+    "@angular/cdk": "^13.3.2",
     "@angular/common": "~12.2.15",
     "@angular/compiler": "~12.2.15",
     "@angular/core": "~12.2.15",
@@ -24,10 +25,12 @@
     "@ngrx/schematics": "^13.0.2",
     "@ngrx/store": "^13.0.2",
     "@ngrx/store-devtools": "^13.0.2",
-    "bootstrap": "^4.5.2",
     "ngrx": "0.0.1-security",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.3.2",
     "rxjs": "~6.6.7",
     "tslib": "^2.0.0",
+    "uuid": "^8.3.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -38,6 +41,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "@types/uuid": "^8.3.4",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",

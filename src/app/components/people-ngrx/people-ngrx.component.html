@@ -1,4 +1,39 @@
-<p>People Component</p>
-TODO: Show all people on this screen
+<!-- TODO: Show all people on this screen
   TODO Implement a person-component that displays the details of a person.
-Add a way to select and then edit a individual person.  There should be options to save and cancel the edit.  Cancelling an edit will result in no changes being made to the selected person.
+  Add a way to select and then edit a individual person.  There should be options to 
+  save and cancel the edit.  Cancelling an edit will result in no changes being made 
+  to the selected person.
+ -->
+
+<div class="table-wrapper">
+  <p-card>
+    <div class="title-row">
+      <h3>Person List</h3>
+      <button type="button" label="Create" pButton (click)="onCreate()"></button>
+    </div>
+    <div *ngIf="people$ | async as people">
+      <p-table [columns]="columns" [value]="people" selectionMode="single" [(selection)]="selectedPerson"
+        (onRowSelect)="onRowSelect($event)" responsiveLayout="scroll">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-person let-columns="columns">
+          <tr [pSelectableRow]="person">
+            <td *ngFor="let col of columns">
+              {{person[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </p-card>
+</div>
+
+<p-sidebar [visible]="selectedPerson !== null">
+  <app-person-edit *ngIf="selectedPerson !== null" [person]="selectedPerson" (action)="onSidebarHide()">
+  </app-person-edit>
+</p-sidebar>
