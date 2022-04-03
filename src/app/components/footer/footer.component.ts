@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
           },
           {
             label: 'People',
-            routerLink: 'people'            
+            routerLink: 'people'
           },
           {
             label: 'Careers'

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { setCurrentPersonAction } from 'src/app/+store/people.actions';
 import { selectAllPeople } from 'src/app/+store/people.reducer';
 import { Person } from 'src/app/models/person-model';
 
@@ -21,8 +22,7 @@ export class PeopleNgrxComponent implements OnInit {
     { field: 'jobTitle', header: 'Job title' },
   ];
 
-  // TODO: Include the Store and get the data from the NgrxStore
-  constructor(private router: Router, private store: Store) { }
+  constructor(private store: Store, private router: Router) { }
 
   ngOnInit() {
   }
@@ -37,7 +37,9 @@ export class PeopleNgrxComponent implements OnInit {
   onRowSelect(event) {
    console.log('row selected ', event);
    console.log('selectedPerson is ', this.selectedPerson);
-   this.showEdit = true;
+    this.store.dispatch(setCurrentPersonAction({ id: this.selectedPerson.id }));
+    this.router.navigate(['/person']);
+   // this.showEdit = true;
   }
 
   onSidebarHide() {

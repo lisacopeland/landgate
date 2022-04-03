@@ -22,7 +22,6 @@ export class PeopleEffects {
             mergeMap((action) => {
                 return this.service.getPeople().pipe(
                     map((response) => {
-                        console.log('response from query : ', response);
                         return setPeopleAction({ payload: response });
                     })
                 );
@@ -36,8 +35,7 @@ export class PeopleEffects {
             mergeMap((action) => {
                 return this.service.postPerson(action.payload).pipe(
                     map((response) => {
-                        console.log('response from query : ', response);
-                        return personCreatedAction({ payload: { person: action.payload }});
+                        return personCreatedAction({ payload: { person: response }});
                     })
                 );
             }, this.concurrentRequests)
@@ -49,8 +47,7 @@ export class PeopleEffects {
             mergeMap((action) => {
                 return this.service.putPerson(action.changes).pipe(
                     map((response) => {
-                        console.log('response from query : ', response);
-                        return personUpdatedAction({ payload: { changes: action.changes } });
+                        return personUpdatedAction({ payload: { changes: response } });
                     })
                 );
             }, this.concurrentRequests)
@@ -62,7 +59,6 @@ export class PeopleEffects {
             mergeMap((action) => {
                 return this.service.deletePerson(action.id).pipe(
                     map((response) => {
-                        console.log('response from query : ', response);
                         return personDeletedAction({ payload: { id: action.id } });
                     })
                 );

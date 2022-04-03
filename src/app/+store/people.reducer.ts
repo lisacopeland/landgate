@@ -57,9 +57,9 @@ export const peopleReducer = createReducer(
             newState = { ...state, people: people, currentPerson: currentPerson, current: action.id };
             return newState;
         } else {
-           return newState;
+            return newState;
         }
-    }),    
+    }),
     on(personUpdatedAction, (state, action) => {
         const people = [...state.people];
         const idx = people.findIndex(x => x.id === action.payload.changes.id);
@@ -87,10 +87,8 @@ export const selectAll = createSelector(
     (state: PeopleState) => state
 );
 
-export const selectAllPeople = createSelector(selectAll, (state) => {
-    console.log('select all people!');
-    return mapToPeople(state.people)
-});
+export const selectAllPeople = createSelector(selectAll, (state) => mapToPeople(state.people)
+);
 
 export const selectPeopleLoaded = createSelector(selectAll, (state) =>
     state.peopleLoaded

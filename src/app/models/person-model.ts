@@ -7,7 +7,6 @@ export class Person {
   public jobTitle: string;
 
   constructor(dataIn: Partial<Person>) {
-    // TODO: Implement a dataIn object that gets passed in as a JavaScript Object
     Object.keys(dataIn).forEach((key) => {
       this[key] = dataIn[key];
     });

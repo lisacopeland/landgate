@@ -1,0 +1,19 @@
+<ng-container *ngIf="(person$ | async) as person">
+    <p-card styleClass="card-style">
+        <ng-template pTemplate="header">
+            <h3>
+            {{person.firstName}} {{ person.lastName}}
+            </h3>
+        </ng-template>
+        <div>Age: {{person.age}}</div>
+        <div>Job Title: {{person.jobTitle}}</div>
+        <ng-template pTemplate="footer">
+            <button pButton type="button" label="Edit" (click)="editing = true">
+            </button>
+        </ng-template>
+    </p-card>
+    <p-sidebar [visible]="editing">
+        <app-person-edit *ngIf="person !== null" [person]="person" (action)="onSidebarHide($event)">
+        </app-person-edit>
+    </p-sidebar>
+</ng-container>

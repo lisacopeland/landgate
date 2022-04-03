@@ -9,13 +9,11 @@ import { loadPeopleAction } from './+store/people.actions';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'landgate-ui-test';
-  subs = [];
-  
+
   constructor(private store: Store, private router: Router) { }
 
   ngOnInit() {
-    // Always redirect back to list on refresh
+    // redirect back to home on refresh
     this.router.navigate(['']);
     this.store.dispatch(loadPeopleAction({ search: { } }));
   }

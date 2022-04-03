@@ -11,7 +11,7 @@ import { Person } from 'src/app/models/person-model';
 })
 export class PersonEditComponent implements OnInit {
   @Input() person: Person = null;
-  @Output() action = new EventEmitter();
+  @Output() action = new EventEmitter<any>();
 
   form: FormGroup;
 
@@ -49,8 +49,9 @@ export class PersonEditComponent implements OnInit {
   }
 
   onDelete() {
+    // TODO: Throw up confirmation modal
     this.store.dispatch(deletePersonAction({ id: this.person.id }));
-    this.action.emit({ action: 'delete '});
+    this.action.emit({ action: 'delete'});
   }
 
   onCancel() {

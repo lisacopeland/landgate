@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { Person } from '../models/Person-model';
 
+// TODO: Implement an error popup
+
 export const loadPeopleAction = createAction(
     'People: Load All',
     props<{ search: Partial<Person> }>()

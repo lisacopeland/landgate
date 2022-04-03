@@ -26,6 +26,7 @@ import { TableModule } from 'primeng/table';
 
 import { PeopleNgrxComponent } from './components/people-ngrx/people-ngrx.component';
 import { PersonEditComponent } from './components/person-edit/person-edit.component';
+import { PersonDetailComponent } from './components/person-detail/person-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PersonEditComponent } from './components/person-edit/person-edit.compon
     FooterComponent,
     HomeComponent,
     PeopleNgrxComponent,
-    PersonEditComponent
+    PersonEditComponent,
+    PersonDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,6 @@ import { PersonEditComponent } from './components/person-edit/person-edit.compon
       },
     }),
     EffectsModule.forRoot([PeopleEffects]),
-    // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreModule.forRoot({ people: peopleReducer }),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 100, // Retains last 100 states
